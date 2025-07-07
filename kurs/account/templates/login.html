@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+    <META http-equiv="Content-Type"
+        content="text/html; charset=UTF-8">
+    <TITLE>Интернет-магазин PKLN</TITLE>
+</HEAD>
+<body>
+    <h1 align="center" style="color:#0039A6">Интернет-магазин PKLN</h1>
+    <HR>
+<h2>Вход</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Войти</button>
+</form>
+</body>

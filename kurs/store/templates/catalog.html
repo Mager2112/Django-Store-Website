@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Каталог товаров</title>
+</head>
+<body>
+    <h1 align="center" style="color:#0039A6">Интернет-магазин PKLN</h1>
+    <hr>
+    <h2 style="color:#D52B1E">Каталог наших товаров:</h2>
+    
+    {% if products %}
+        <!--Каталог товаров берётся из БД, если ничего нет, то "Товаров пока нет"-->
+            {% for product in products %}
+                <div style="border:1px solid #0039A6; padding:10px; margin-bottom:10px;">
+
+                    <!--<h style="color:#0039A6">{{ product.name }}</h3>-->
+                    <h3 style="color:#0039A6"><a href="{% url 'product_detail' product.product_id %}">{{ product.name }}</a></h3>
+                    <p><b>Цена</b>: &emsp;{{ product.price }} Рублей</p>
+                    <p><b>Кол-во на складе</b>: &emsp;{{ product.stock }}</p>
+                    {% if product.description %}
+                        <p><b>Описание</b>: {{ product.description }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+    {% else %}
+        <p>Товаров пока нет</p>
+    {% endif %}
+    
+    <hr>
+    <h2>Ссылки</h2>
+    <p><a href="http://127.0.0.1:8000/">На главную страницу</a>
+    </p>
+</body>
+</html>

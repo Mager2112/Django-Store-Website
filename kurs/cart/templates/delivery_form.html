@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Каталог товаров</title>
+</head>
+<body>
+<h1 align="center" style="color:#0039A6">Интернет-магазин PKLN</h1>
+<hr>
+<h2>Введите данные для доставки</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>Адрес:</label><br>
+    <input type="text" name="address" required><br><br>
+
+    <label>Телефон:</label><br>
+    <input type="text" name="phone" maxlength="11" required><br><br>
+
+    <label>Заметки:</label><br>
+    <input type="text" name="notes"><br><br>
+
+    <button type="submit">Купить</button>
+    <p>Общая сумма: {{ total_price }} Рублей</p>
+</form>
+<!-- Кнопка отмены -->
+<form action="{% url 'cart_detail' %}" method="get" style="display:inline;">
+    <button type="submit">Отмена</button>
+</form>
+</body>
+</html>

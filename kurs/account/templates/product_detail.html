@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+    <META http-equiv="Content-Type"
+        content="text/html; charset=UTF-8">
+    <TITLE>Интернет-магазин PKLN</TITLE>
+</HEAD>
+<body>
+    <h1 align="center" style="color:#0039A6">Интернет-магазин PKLN</h1>
+    <HR>
+<h2 style="color:#D52B1E">{{ product.name }}</h2>
+<p>{{ product.description }}</p>
+<p><b>Цена:</b> {{ product.price }} RUB</p>
+<p><b>На складе:</b> {{ product.stock }}</p>
+<!--Корзина-->
+<a href="http://127.0.0.1:8000/cart">Корзина</a>
+<form action="{% url 'add_to_cart' product.product_id %}" method="post">
+  {% csrf_token %}
+  <button type="submit">Положить в корзину</button>
+</form>
+
+
+<!--Отзывы-->
+<h3>Отзывы:</h3>
+{% for review in reviews %}
+<div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+    <strong>{{ review.user_id.username }}</strong> — {{ review.created_at|date:"Y-m-d H:i" }}<br>
+    <b>Оценка:</b> {{ review.rating }}/5<br>
+    <p>{{ review.text }}</p>
+</div>
+{% empty %}
+<p>Нет отзывов.</p>
+{% endfor %}
+
+<h3>Оставить отзыв:</h3>
+{% if user.is_authenticated %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Отправить отзыв</button>
+</form>
+{% else %}
+<p>Пожалуйста, <a href="{% url 'login' %}">войдите</a>, чтобы оставить отзыв.</p>
+{% endif %}
+<hr>
+<h2>Ссылки</h2>
+<p>
+    <a href="http://127.0.0.1:8000/catalog">Вернуться в Каталог</a>|
+    <a href="http://127.0.0.1:8000/">На главную страницу</a>
+</p>
+</body>
+</HTML>

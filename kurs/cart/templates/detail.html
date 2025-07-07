@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Каталог товаров</title>
+</head>
+<body>
+    <h1 align="center" style="color:#0039A6">Интернет-магазин PKLN</h1>
+    <hr>
+    <h2 style="color:#D52B1E">Ваша корзина</h2>
+
+{% if items %}
+<table>
+<tr>
+  <th>Товар</th>
+  <th>Количество</th>
+  <th>Цена за шт.</th>
+</tr>
+{% for item in items %}
+<tr>
+  <td>{{ item.Product_id.name }}</td>
+  <td>{{ item.quantity }}</td>
+  <td>{{ item.Product_id.price }} Рублей</td>
+  <!--product.product_id-->
+</tr>
+{% endfor %}
+</table>
+
+<p>Общая сумма: {{ total_price }} Рублей</p>
+<form action="{% url 'clear_cart' %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit">Очистить корзину</button>
+</form>
+<a href="{% url 'delivery' %}">Перейти к оформлению доставки</a>
+{% else %}
+<p>Корзина пуста.</p>
+{% endif %}
+<h2>Ссылки</h2>
+<p>
+    <a href="http://127.0.0.1:8000/catalog">Назад к заказам</a>|
+    <a href="http://127.0.0.1:8000/">На главную страницу</a>
+</p>
+</body>
+</html>

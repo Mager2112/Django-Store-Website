@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+    <META http-equiv="Content-Type"
+        content="text/html; charset=UTF-8">
+    <TITLE>Интернет-магазин PKLN</TITLE>
+ </HEAD>
+ <BODY>
+    <h1 align="center" style="color:#0039A6">Интернет-магазин PKLN</h1>
+    <HR>
+    <h2>
+        Добро пожаловать в мой магазин!
+    </h2>
+    {% if user.is_authenticated %}
+            <div class="user-info">
+                Привет, {{ user.username }}!
+                <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Выйти</button>
+                </form>
+            </div>
+        {% else %}
+            <div class="user-info">
+                <a href="{% url 'login' %}">Войти</a> | <a href="{% url 'register' %}">Регистрация</a>
+            </div>
+    {% endif %}
+    <hr>
+    <h2>
+        Ссылки
+    </h2>
+    <p>
+        <a href="http://127.0.0.1:8000/about/">О магазине</a><br>
+        <a href="http://127.0.0.1:8000/catalog/">Каталог товаров</a><br>
+        <a href="http://127.0.0.1:8000/admin/">Для администрации</a>
+    </p>
+ </BODY>
+</HTML>
