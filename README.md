@@ -22,3 +22,5 @@ Store Website in Django
 
 ## Изображения сайта:
 ![image](https://github.com/user-attachments/assets/a6c5d6a2-d836-45fa-a565-a935efc9d3ec)
+
+![image](https://github.com/user-attachments/assets/a5f4af79-51db-4bc1-9585-8d6234c669db)
