@@ -1,5 +1,5 @@
 # Django-Store-Website
-Store Website in Django
+Store Website in Django. Интернет-магазин на Django
 ## Что это?
 Это интернет-магазин с простым интерфейсом, созданный специально для обучения.
 
